@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.easytravel_sofiane_azarkan.Common.Common;
+import com.example.easytravel_sofiane_azarkan.Model.PopularCity;
 import com.example.easytravel_sofiane_azarkan.Model.WeatherForecastResult;
 import com.example.easytravel_sofiane_azarkan.Model.WeatherResult;
 import com.example.easytravel_sofiane_azarkan.R;
@@ -22,37 +23,14 @@ public class FindDestinationAdapter extends RecyclerView.Adapter<FindDestination
 
     Context context;
     public WeatherForecastResult weatherForecastResult;
-    double averageTemp = 0;
-    String city = "";
-    String icon = "";
-
-    int size = 0;
+    public PopularCity popularCity;
+    public static ArrayList<PopularCity> listPopularCities = new ArrayList<PopularCity>();
 
     public static ArrayList<WeatherForecastResult> listWeatherForecastResult = new ArrayList<WeatherForecastResult>();
 
-    public FindDestinationAdapter(Context context) {
+    public FindDestinationAdapter(Context context, PopularCity popularCity) {
         this.context = context;
-        //this.weatherForecastResult = weatherForecastResult;
-    }
-/*
-    public FindDestinationAdapter(Context context, WeatherForecastResult weatherForecastResult) {
-        this.context = context;
-        this.weatherForecastResult = weatherForecastResult;
-    } */
-
-    public void addWeatherForecastResult(WeatherForecastResult wfr)
-    {
-        weatherForecastResult = wfr;
-        //size++;
-        for(int i = 0; i < weatherForecastResult.getList().size(); i++)
-        {
-            averageTemp = averageTemp + weatherForecastResult.getList().get(i).getMain().getTemp();
-        }
-
-
-
-        city = weatherForecastResult.getCity().getName();
-        icon = weatherForecastResult.getList().get(0).getWeather().get(0).getIcon();
+        this.popularCity = popularCity;
     }
 
     @NonNull
@@ -62,50 +40,23 @@ public class FindDestinationAdapter extends RecyclerView.Adapter<FindDestination
         return new FindDestinationAdapter.MyViewHolder(itemView);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull FindDestinationAdapter.MyViewHolder holder, int position) {
-        //Load icon
-        String description = "wow il fait beau";
 
-        averageTemp = averageTemp/getItemCount();
-        
+        Picasso.get().load(new StringBuilder(listPopularCities.get(position).getAverageIcon()).toString()).into(holder.img_weather);
 
-        Picasso.get().load(new StringBuilder("http://openweathermap.org/img/wn/")
-                .append(new StringBuilder(icon))
-                .append("@2x.png").toString()).into(holder.img_weather);
+        holder.txt_city_name.setText(new StringBuilder(listPopularCities.get(position).getName()));
 
-        holder.txt_city_name.setText(new StringBuilder(city));
+        holder.txt_description.setText(new StringBuilder(listPopularCities.get(position).getAverageDescription()));
 
-        holder.txt_description.setText(new StringBuilder(description));
-
-        holder.txt_temperature.setText(new StringBuilder(String.valueOf(averageTemp)).append("°C"));
-
-            //Toast.makeText(context, String.valueOf(averageTemp), Toast.LENGTH_SHORT).show();
-            //averageTemp = averageTemp/getItemCount();
-            //Toast.makeText(context, String.valueOf(averageTemp), Toast.LENGTH_SHORT).show();
-/*
-            Picasso.get().load(new StringBuilder("http://openweathermap.org/img/wn/")
-                    .append(weatherForecastResult.getList().get(position).getWeather().get(0).getIcon())
-                    .append("@2x.png").toString()).into(holder.img_weather);
-
-            holder.txt_city_name.setText(new StringBuilder(weatherForecastResult.getCity().getName()));
-
-            holder.txt_description.setText(new StringBuilder(weatherForecastResult.getList().get(position)
-                    .getWeather().get(0).getDescription()));
-
-            //holder.txt_temperature.setText(new StringBuilder(String.valueOf(weatherForecastResult.getList().get(position)
-                  //  .getMain().getTemp())).append("°C"));
-
-            holder.txt_temperature.setText(new StringBuilder(String.valueOf(averageTemp)));*/
-
-
-
+        holder.txt_temperature.setText(new StringBuilder(String.format("%.2f", listPopularCities.get(position).getAverageTemperature())).append("°C"));
     }
 
     @Override
     public int getItemCount() {
-        return weatherForecastResult.getList().size();
-        //return size;
+        int numberOfCardsToShow = listPopularCities.size();
+        return numberOfCardsToShow;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

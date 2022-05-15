@@ -10,10 +10,7 @@ public class CalendarActivity extends AppCompatActivity {
 
     CalendarView calendarView;
     TextView myStartDate;
-    TextView myEndDate;
-    String startDate, endDate;
-
-    int cpt = 0;
+    String startDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,27 +19,21 @@ public class CalendarActivity extends AppCompatActivity {
 
         calendarView = (CalendarView) findViewById(R.id.calendarView);
         myStartDate = (TextView) findViewById(R.id.myStartDate);
-        myEndDate = (TextView) findViewById(R.id.myEndDate);
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
                 startDate = "";
-                endDate = "";
 
-                if(cpt == 0)
-                {
-                    startDate = day + "/" + (month+1) + "/" + year;
-                    myStartDate.setText("Start : " + startDate);
-                    cpt += 1;
-                }
-                else
-                {
-                    endDate = day + "/" + (month+1) + "/" + year;
-                    myEndDate.setText("End : " + endDate);
-                    cpt = 0;
-                }
+                startDate = day + "/" + (month+1) + "/" + year;
+                myStartDate.setText("Start : " + startDate);
+
             }
         });
+    }
+
+    public void saveDate()
+    { //sauvegarder la date dans un fichier txt pour ensuite afficher une notif
+
     }
 }

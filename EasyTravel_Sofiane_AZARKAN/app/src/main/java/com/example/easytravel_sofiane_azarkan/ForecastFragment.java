@@ -68,7 +68,6 @@ public class ForecastFragment extends Fragment {
         txt_city_name_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String text) {
-                Toast.makeText(getActivity(), "CLICKED", Toast.LENGTH_LONG).show();
                 cityName = text;
                 getForecastWeather(); //affiches les nouvelles informations
                 return false;
@@ -103,7 +102,6 @@ public class ForecastFragment extends Fragment {
                 .subscribe(new Consumer<WeatherForecastResult>() {
                    @Override
                    public void accept(WeatherForecastResult weatherForecastResult) throws Exception {
-                        
                         displayForecastWeather(weatherForecastResult);
                    }
                }, new Consumer<Throwable>() {
