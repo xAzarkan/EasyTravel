@@ -119,6 +119,7 @@ public class TodayWeatherFragment extends Fragment {
                         .append("@2x.png").toString()).into(img_weather);
 
                         //Load information
+                        txt_wind.setText(new StringBuilder(String.valueOf(weatherResult.getWind().getSpeed() * 1.609)).append("km/h").toString());
                         txt_city_name.setText(weatherResult.getName());
                         txt_description.setText(new StringBuilder("Weather in ")
                         .append(weatherResult.getName()).toString());
