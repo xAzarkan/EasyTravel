@@ -86,6 +86,11 @@ public class CalendarActivity extends AppCompatActivity {
         }
     }
 
+    public void goToMainActivity(View view)
+    {
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
     public void saveDate(View view)
     { //sauvegarder la date dans un fichier txt pour ensuite afficher une notif
 

@@ -68,7 +68,19 @@
             android:onClick="saveDate"
             android:padding="30dp"
             android:text="Save the date"
-            android:textColor="@color/black" />
+            android:textColor="@color/textColorPrimary" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:onClick="goToMainActivity"
+            android:padding="30dp"
+            android:text="Back to the home page"
+            android:textColor="@color/textColorPrimary" />
+
 
     </LinearLayout>
     </ScrollView>

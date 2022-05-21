@@ -53,6 +53,4 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
     //librairie Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
-
-
 }
