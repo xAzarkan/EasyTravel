@@ -67,6 +67,8 @@ public class AvgTemperatureFragment extends Fragment {
 
         txt_headline = (TextView)itemView.findViewById(R.id.txt_headline);
 
+        FindDestinationAdapter.listPopularCities = new ArrayList<PopularCity>();
+
         for(int i = 0; i < popularCitiesArray.length; i++)
         {
             getAvgTemperature(popularCitiesArray[i]);
@@ -104,6 +106,8 @@ public class AvgTemperatureFragment extends Fragment {
     }
 
     private void displayAvgTemperature(WeatherForecastResult weatherForecastResult) {
+
+
 
         ArrayList<Double> listOfTemp = new ArrayList<Double>();
         ArrayList<String> listOfIcons = new ArrayList<String>();
@@ -221,7 +225,6 @@ public class AvgTemperatureFragment extends Fragment {
         FindDestinationAdapter adapter;
         adapter = new FindDestinationAdapter(getContext(), popularCity);
 
-        //adapter.notifyDataSetChanged();
         recycler_avg_temp.setAdapter(adapter);
     }
 }

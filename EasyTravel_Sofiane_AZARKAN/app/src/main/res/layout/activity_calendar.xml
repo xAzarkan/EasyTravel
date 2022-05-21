@@ -5,20 +5,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background1"
     tools:context=".CalendarActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme ="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabMode="fixed"
-            app:tabGravity="fill">
-        </android.support.design.widget.TabLayout>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -35,11 +28,10 @@
             android:id="@+id/txt_headline"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/black"
             android:text="Select the date of your first day of vacation"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"/>
+            android:layout_height="wrap_content" />
 
 
         <TextView
@@ -62,7 +54,9 @@
                 android:id="@+id/calendarView"
                 android:layout_width="wrap_content"
                 android:layout_height="320dp"
-                android:layout_gravity="center_horizontal"></CalendarView>
+                android:layout_gravity="center_horizontal">
+
+            </CalendarView>
         </LinearLayout>
 
         <Button
@@ -74,7 +68,7 @@
             android:onClick="saveDate"
             android:padding="30dp"
             android:text="Save the date"
-            android:textColor="@color/textColorPrimary" />
+            android:textColor="@color/black" />
 
     </LinearLayout>
     </ScrollView>

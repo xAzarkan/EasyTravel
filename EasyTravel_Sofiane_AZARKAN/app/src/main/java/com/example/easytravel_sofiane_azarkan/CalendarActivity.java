@@ -89,7 +89,7 @@ public class CalendarActivity extends AppCompatActivity {
     public void saveDate(View view)
     { //sauvegarder la date dans un fichier txt pour ensuite afficher une notif
 
-        if(startDate != "")
+        if(startDate != "" && calendar != null)
         {
             Toast.makeText(this, "The date was successfully saved!", Toast.LENGTH_SHORT).show();
 

@@ -67,6 +67,7 @@ public class PopularCitiesFragment extends Fragment {
         recycler_popular_cities.setHasFixedSize(true);
         recycler_popular_cities.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
+        PopularCitiesAdapter.listWeatherResult = new ArrayList<WeatherResult>();
 
         for(int i = 0; i < popularCitiesArray.length; i++)
         {

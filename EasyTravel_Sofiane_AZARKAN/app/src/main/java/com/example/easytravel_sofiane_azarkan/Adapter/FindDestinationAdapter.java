@@ -24,7 +24,7 @@ public class FindDestinationAdapter extends RecyclerView.Adapter<FindDestination
     Context context;
     public WeatherForecastResult weatherForecastResult;
     public PopularCity popularCity;
-    public static ArrayList<PopularCity> listPopularCities = new ArrayList<PopularCity>();
+    public static ArrayList<PopularCity> listPopularCities;
 
     public static ArrayList<WeatherForecastResult> listWeatherForecastResult = new ArrayList<WeatherForecastResult>();
 

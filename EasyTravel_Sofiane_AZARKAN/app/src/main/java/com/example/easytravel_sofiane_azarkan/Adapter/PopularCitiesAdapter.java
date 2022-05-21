@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class PopularCitiesAdapter extends RecyclerView.Adapter<PopularCitiesAdapter.MyViewHolder>{
     Context context;
     WeatherResult weatherResult;
-    public static ArrayList<WeatherResult> listWeatherResult = new ArrayList<WeatherResult>();
+    public static ArrayList<WeatherResult> listWeatherResult;
 
     public PopularCitiesAdapter(Context context)
     {
@@ -53,13 +53,6 @@ public class PopularCitiesAdapter extends RecyclerView.Adapter<PopularCitiesAdap
         holder.txt_description.setText(new StringBuilder(listWeatherResult.get(position).getWeather().get(0).getDescription()));
 
         holder.txt_temperature.setText(new StringBuilder(String.valueOf(listWeatherResult.get(position).getMain().getTemp())).append("°C"));
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context, listWeatherResult.get(position).getName(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override

@@ -16,13 +16,13 @@
         android:theme="@style/MyMaterialTheme">
         <activity
             android:name=".FindDestinationActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".WeatherActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".CalendarActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

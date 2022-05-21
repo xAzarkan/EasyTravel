@@ -41,8 +41,6 @@ import retrofit2.Retrofit;
 
 public class FindDestinationActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
     private ViewPager viewPager;
 
     private CoordinatorLayout coordinatorLayout;
@@ -57,11 +55,6 @@ public class FindDestinationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_find_destination);
 
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.root_view);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Request permission
         Dexter.withActivity(this)
@@ -103,8 +96,6 @@ public class FindDestinationActivity extends AppCompatActivity {
 
                 viewPager = (ViewPager) findViewById(R.id.view_pager);
                 setupViewPager(viewPager);
-                tabLayout = (TabLayout) findViewById(R.id.tabs);
-                tabLayout.setupWithViewPager(viewPager);
 
                 //Log
                 Log.d("Location", locationResult.getLastLocation().getLatitude() + "/" + locationResult.getLastLocation().getLongitude());

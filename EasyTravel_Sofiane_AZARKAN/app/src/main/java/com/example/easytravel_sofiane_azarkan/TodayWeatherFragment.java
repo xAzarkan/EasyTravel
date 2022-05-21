@@ -1,6 +1,7 @@
 package com.example.easytravel_sofiane_azarkan;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -34,10 +35,9 @@ import retrofit2.Retrofit;
 public class TodayWeatherFragment extends Fragment {
 
     ImageView img_weather;
-    TextView txt_city_name, txt_humidity, txt_sunrise, txt_sunset, txt_pressure, txt_temperature, txt_description, txt_date_time, txt_wind, txt_geo_coord;
+    TextView txt_city_name, txt_humidity, txt_sunrise, txt_sunset, txt_pressure, txt_temperature, txt_date_time, txt_geo_coord;
     SearchView txt_city_name_search;
     LinearLayout weather_panel;
-    ProgressBar loading;
 
     CompositeDisposable compositeDisposable;
     IOpenWeatherMap mService;
@@ -72,18 +72,15 @@ public class TodayWeatherFragment extends Fragment {
         txt_sunset = (TextView) itemView.findViewById(R.id.txt_sunset);
         txt_pressure = (TextView) itemView.findViewById(R.id.txt_pressure);
         txt_temperature = (TextView) itemView.findViewById(R.id.txt_temperature);
-        txt_description = (TextView) itemView.findViewById(R.id.txt_description);
         txt_date_time = (TextView) itemView.findViewById(R.id.txt_date_time);
-        txt_wind = (TextView) itemView.findViewById(R.id.txt_wind);
         txt_geo_coord = (TextView) itemView.findViewById(R.id.txt_geo_coord);
 
         weather_panel = (LinearLayout) itemView.findViewById(R.id.weather_panel);
-        loading = (ProgressBar) itemView.findViewById(R.id.loading);
 
         txt_city_name_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String text) {
-                Toast.makeText(getActivity(), "CLICKED", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(), "CLICKED", Toast.LENGTH_LONG).show();
                 cityName = text;
                 getWeatherInformation(); //affiches les nouvelles informations
                 return false;
@@ -118,11 +115,7 @@ public class TodayWeatherFragment extends Fragment {
                         .append(weatherResult.getWeather().get(0).getIcon())
                         .append("@2x.png").toString()).into(img_weather);
 
-                        //Load information
-                        txt_wind.setText(new StringBuilder(String.valueOf(weatherResult.getWind().getSpeed() * 1.609)).append("km/h").toString());
-                        txt_city_name.setText(weatherResult.getName());
-                        txt_description.setText(new StringBuilder("Weather in ")
-                        .append(weatherResult.getName()).toString());
+                        txt_city_name.setText("Weather in " + weatherResult.getName());
                         txt_temperature.setText(new StringBuilder(String.valueOf(weatherResult.getMain().getTemp())).append("°C").toString());
                         txt_date_time.setText(Common.convertUnixToDate(weatherResult.getDt()));
                         txt_pressure.setText(new StringBuilder(String.valueOf(weatherResult.getMain().getPressure())).append("hPa").toString());
@@ -130,10 +123,6 @@ public class TodayWeatherFragment extends Fragment {
                         txt_sunrise.setText(Common.convertUnixToHour(weatherResult.getSys().getSunrise()));
                         txt_sunset.setText(Common.convertUnixToHour(weatherResult.getSys().getSunset()));
                         txt_geo_coord.setText(new StringBuilder(weatherResult.getCoord().toString()));
-
-                        //Display panel
-                        weather_panel.setVisibility(View.VISIBLE);
-                        loading.setVisibility(View.GONE);
 
                     }
                 }, new Consumer<Throwable>() {
